@@ -63,8 +63,8 @@ def pinjamBuku(nim, no_isbn):
     if mahasiswa and buku:
         if buku['stok'] - buku['booked'] > 0:
             buku['booked'] += 1
-            tanggalpinjam = datetime.now().strftime('%Y-%m-%d')
-            tanggal_kembali = (datetime.now() + timedelta(days=14)).strftime('%Y-%m-%d')
+            tanggalpinjam = int(input("masukan tanggal sekarang = "))
+            tanggal_kembali = int(input("Sampai = "))    
             tambahPeminjam(nim, no_isbn, tanggalpinjam, tanggal_kembali, 'Dipinjam')
             print(f"Buku '{buku['judul']}' berhasil dipinjam oleh {mahasiswa['nama']}")
         else:
@@ -80,7 +80,7 @@ def kembalikanBuku(nim, no_isbn):
     if peminjaman and buku:
         buku['booked'] -= 1
         peminjaman['status'] = 'Dikembalikan'
-        peminjaman['tanggalkembali'] = datetime.now().strftime('%Y-%m-%d')
+        peminjaman['tanggalkembali'] = 'tanggalkembali'
         print(f"Buku '{buku['judul']}' berhasil dikembalikan")
     else:
         print('Peminjaman tidak ditemukan')
@@ -118,7 +118,7 @@ def menu():
             daftarMahasiswa()
         elif pilihan == '5':
             nim = input("Masukkan NIM mahasiswa: ")
-            no_isbn = input("Masukkan ISBN buku: ")
+            no_isbn = input("Masukkan ISBN buku: ")            
             pinjamBuku(nim, no_isbn)
         elif pilihan == '6':
             nim = input("Masukkan NIM mahasiswa: ")
